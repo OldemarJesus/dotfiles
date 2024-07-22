@@ -1,0 +1,102 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 38,
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "fixed-center": true,
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "tray",
+    "memory",
+    "disk",
+    "pulseaudio",
+    "pulseaudio#microphone"
+  ],
+  "hyprland/window": {
+    "format": "{}"
+  },
+  "hyprland/workspaces": {
+    "sort-by-name": true,
+    "format": "{id}",
+    "show-special": true,
+    "persistent-workspaces": {
+      "*": 0
+    }
+  },
+  "tray": {
+    "icon-size": 12,
+    "spacing": 2
+  },
+  "clock": {
+    "interval": 1,
+    "format": " {:%A, %B %d [%H:%M:%S]}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "format": {
+        "months": "<span color='#e6e1cf'><b>{}</b></span>",
+        "days": "<span color='#cad3f5'><b>{}</b></span>",
+        "weekdays": "<span color='#ff3333'><b>{}</b></span>",
+        "today": "<span color='#f5a97f'><b><u>{}</u></b></span>"
+      }
+    }
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "tooltip": false,
+    "format-muted": " Muted",
+    "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_SINK@ 10%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 10%-",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    }
+  },
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": "  Muted",
+    "on-click": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_SOURCE@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_SOURCE@ 5%-"
+  },
+  "network": {
+    "format-disconnected": "Disconnected",
+    "format-wifi": "  {essid}",
+    "tooltip-format": " {signalStrength}",
+    "on-click": "wifimenu"
+  },
+  "memory": {
+    "interval": 30,
+    "format": " {used}G",
+    "tooltip-format": "{used} / {total} G"
+  },
+  "disk": {
+    "interval": 600,
+    "format": " {percentage_used}%",
+    "tooltip-format": "{used} used out of {total} on {path} "
+  },
+  "custom/notifications": {
+    "format": "{}",
+    "exec": "$HOME/.config/waybar/bin/not-dnd -j",
+    "on-click": "$HOME/.config/waybar/bin/not-dnd",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 2
+  }
+}

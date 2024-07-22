@@ -1,0 +1,144 @@
+@import "mocha.css";
+
+* {
+  /* reference the color by using @color-name */
+  border: none;
+  border-radius: 7px;
+  font-family: "JetBrainsMono Nerd Font";
+  font-weight: bold;
+  font-size: 13px;
+  min-height: 0;
+  color: @rosewater;
+}
+
+window#waybar {
+  /* you can also GTK3 CSS functions! */
+  background-color: shade(@base, 0.9);
+  border: 2px solid alpha(@crust, 0.3);
+}
+
+tooltip {
+    background: #000000;
+    border-radius: 7px;
+    border-width: 2.5px;
+    border-style: solid;
+    border-color: #8aadf4;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#workspaces button {
+    color: #313244;
+    margin-right: 5px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+#workspaces button.active {
+    color: @rosewater;
+    border-top: solid @rosewater 2px;
+    border-radius: 0px;
+}
+
+#workspaces button.focused {
+    color: #a6adc8;
+    background: #eba0ac;
+    border-radius: 8px;
+}
+
+#workspaces button.urgent {
+    color: #11111b;
+    background: #a6e3a1;
+    border-radius: 7px;
+}
+
+#workspaces button:hover {
+    background: #11111b;
+    color: #cdd6f4;
+    border-radius: 7px;
+}
+
+#window,
+#clock,
+#battery,
+#pulseaudio,
+#pulseaudio.microphone,
+#network,
+#bluetooth,
+#custom-notifications,
+#custom-updates,
+#custom-player,
+#workspaces,
+#tray,
+#memory,
+#disk,
+#backlight,
+
+#backlight {
+    background: @crust;
+    opacity: 1.0;
+    padding: 1.5px 7px 1.5px 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 7px 7px 7px 7px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+#tray {
+    border-radius: 7px;
+    background: @surface0;
+    margin-right: 7px;
+}
+
+#workspaces {
+    background: @crust;
+    border-radius: 7px;
+    margin-left: 5px;
+    padding-right: 0px;
+}
+
+#window {
+    border-radius: 7px;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+#clock {
+    color: @rosewater ;
+    border-radius: 7px 7px 7px 7px;
+    margin-right: 3px;
+    margin-left: 3px;
+}
+
+#network {
+    color: #f9e2af;
+    border-radius: 7px 7px 7px 7px;
+    margin-right: 5px;
+}
+
+#memory {
+    color: @rosewater;
+    border-radius: 7px 7px 7px 7px;
+    margin-left: 5px;
+}
+
+#disk {
+    color: #f9e2af;
+    border-radius: 7px 7px 7px 7px;
+    margin-left: 5px;
+}
+
+#pulseaudio {
+  color: @maroon;
+  border-radius: 7px 0px 0px 7px;
+  margin-right: 0px;
+}
+
+#pulseaudio.microphone {
+    color: #cba6f7;
+    border-radius: 0px 7px 7px 0px;
+    margin-left: 0px;
+}
