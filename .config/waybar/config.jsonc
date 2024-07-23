@@ -4,6 +4,8 @@
   "height": 40,
   "modules-left": [
     "hyprland/workspaces"
+    "hyprland/workspaces",
+    "custom/notifications"
   ],
   "fixed-center": true,
   "modules-center": [
