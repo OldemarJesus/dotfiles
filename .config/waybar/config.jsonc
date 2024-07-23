@@ -3,7 +3,6 @@
   "position": "top",
   "height": 40,
   "modules-left": [
-    "hyprland/workspaces"
     "hyprland/workspaces",
     "custom/notifications"
   ],
@@ -13,6 +12,7 @@
   ],
   "modules-right": [
     "tray",
+    "cpu",
     "memory",
     "custom/nvidia-gpu-usage",
     "disk",
@@ -83,10 +83,17 @@
     "tooltip-format": " {signalStrength}",
     "on-click": "wifimenu"
   },
+  "cpu": {
+    "interval": 10,
+    "format": "{}%  ",
+    "max-length": 10,
+    "on-click": "kitty btop"
+  },
   "memory": {
     "interval": 30,
     "format": " {used}G",
-    "tooltip-format": "{used} / {total} G"
+    "tooltip-format": "{used} / {total} G",
+    "on-click": "kitty btop"
   },
   "disk": {
     "interval": 600,
