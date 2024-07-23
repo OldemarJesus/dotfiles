@@ -73,6 +73,8 @@ tooltip {
 #workspaces,
 #tray,
 #memory,
+#cpu,
+#custom-nvidia-gpu-usage,
 #disk,
 #backlight,
 
@@ -120,6 +122,18 @@ tooltip {
 }
 
 #memory {
+    color: @rosewater;
+    border-radius: 7px 7px 7px 7px;
+    margin-left: 5px;
+}
+
+#cpu {
+    color: @rosewater;
+    border-radius: 7px 7px 7px 7px;
+    margin-left: 5px;
+}
+
+#custom-nvidia-gpu-usage {
     color: @rosewater;
     border-radius: 7px 7px 7px 7px;
     margin-left: 5px;

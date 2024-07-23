@@ -12,6 +12,7 @@
   "modules-right": [
     "tray",
     "memory",
+    "custom/nvidia-gpu-usage",
     "disk",
     "pulseaudio",
     "pulseaudio#microphone"
@@ -97,5 +98,10 @@
     "return-type": "json",
     "interval": "once",
     "signal": 2
+  },
+  "custom/nvidia-gpu-usage": {
+    "format": " {}%",
+    "exec": "$HOME/.config/nvidia-scripts/get-gpu-usage.sh",
+    "interval": 10
   }
 }
