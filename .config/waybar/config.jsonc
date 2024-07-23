@@ -1,7 +1,7 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 38,
+  "height": 40,
   "modules-left": [
     "hyprland/workspaces"
   ],
@@ -20,12 +20,11 @@
     "format": "{}"
   },
   "hyprland/workspaces": {
-    "sort-by-name": true,
-    "format": "{id}",
-    "show-special": true,
+    "format": "{name}",
     "persistent-workspaces": {
       "*": 0
-    }
+    },
+    "all-outputs": false
   },
   "tray": {
     "icon-size": 12,
