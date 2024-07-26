@@ -17,6 +17,7 @@
     "disk",
     "pulseaudio",
     "pulseaudio#microphone",
+    "custom/updates",
     "custom/notification"
   ],
   "hyprland/window": {
@@ -120,6 +121,16 @@
     "on-click-right": "swaync-client -d -sw",
     "escape": true
   },
+  "custom/updates": {
+       "format": "{} {icon}",
+       "return-type": "json",
+       "format-icons": {
+           "has-updates": "󱍷",
+           "updated": "󰂪"
+       },
+       "exec-if": "which waybar-module-pacman-updates",
+       "exec": "waybar-module-pacman-updates  --interval-seconds 5 --network-interval-seconds 300"
+   },
   "custom/nvidia-gpu-usage": {
     "format": " {}%",
     "exec": "$HOME/.config/nvidia-scripts/get-gpu-usage.sh",
