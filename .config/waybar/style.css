@@ -67,7 +67,7 @@ tooltip {
 #pulseaudio.microphone,
 #network,
 #bluetooth,
-#custom-notifications,
+#custom-notification,
 #custom-updates,
 #custom-player,
 #workspaces,
@@ -155,4 +155,9 @@ tooltip {
     color: #cba6f7;
     border-radius: 0px 7px 7px 0px;
     margin-left: 0px;
+}
+
+#custom-notification {
+  padding-right: 3px;
+  padding-left: 8px;
 }
