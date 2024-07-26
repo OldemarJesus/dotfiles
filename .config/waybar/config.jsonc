@@ -84,8 +84,8 @@
     "on-click": "wifimenu"
   },
   "cpu": {
-    "interval": 10,
-    "format": "{}%  ",
+    "interval": 2,
+    "format": "{usage}%  ",
     "max-length": 10,
     "on-click": "kitty btop"
   },
@@ -111,6 +111,6 @@
   "custom/nvidia-gpu-usage": {
     "format": " {}%",
     "exec": "$HOME/.config/nvidia-scripts/get-gpu-usage.sh",
-    "interval": 10
+    "interval": 2
   }
 }
