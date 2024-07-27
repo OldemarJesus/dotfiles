@@ -63,3 +63,6 @@ setopt share_history          # share command history data
 
 # Nerdfetch
 nerdfetch
+
+# Asdf
+. "$HOME/.asdf/asdf.sh"
