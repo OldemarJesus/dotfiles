@@ -11,7 +11,7 @@ return {
 		config = function()
 			-- setting mason lsp config
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "rust_analyzer", "tsserver", "csharp_ls" },
+				ensure_installed = { "lua_ls", "rust_analyzer", "tsserver", "csharp_ls", "clangd" },
 			})
 		end,
 	},
@@ -31,6 +31,9 @@ return {
 			require("lspconfig").csharp_ls.setup({
 				capabilities = capabilities,
 			})
+            require("lspconfig").clangd.setup({
+                capabilities = capabilities,
+            })
 
 			-- setting up lsp clients keybinds
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
