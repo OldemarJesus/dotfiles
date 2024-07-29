@@ -76,6 +76,7 @@ tooltip {
 #memory,
 #cpu,
 #custom-nvidia-gpu-usage,
+#custom-powerbtn,
 #disk,
 #backlight,
 
@@ -159,6 +160,11 @@ tooltip {
 }
 
 #custom-notification {
+  padding-right: 3px;
+  padding-left: 8px;
+}
+
+#custom-powerbtn {
   padding-right: 3px;
   padding-left: 8px;
 }

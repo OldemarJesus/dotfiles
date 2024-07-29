@@ -18,34 +18,19 @@ else
 	# Buttons
 	layout=`cat $HOME/.config/rofi/config/powermenu.rasi | grep BUTTON | cut -d'=' -f2 | tr -d '[:blank:],*/'`
 	if [[ "$layout" == "TRUE" ]]; then
-  # Section 1
-
-		shutdown=""
-		reboot=""
-		lock=""
-		suspend=""
-		logout=""
-  # Section 2
-#		shutdown="󰐥"
-#		reboot="󰜉"
-#		lock="󰍁"
-#		suspend="󰒲"
-#		logout="󰍃 "
+		shutdown="󰐥"
+		reboot="󰜉"
+		lock="󰍁"
+		suspend="󰒲"
+		logout="󰍃 "
 
 
 	else
-  # Section 1
-		shutdown=" Shutdown"
-		reboot=" Restart"
-		lock=" Lock"
-		suspend=" Sleep"
-		logout=" Logout"
-  # Section 2
-#		shutdown="󰐥Shutdown"
-#		reboot="󰜉 Restart"
-#		lock="󰍁 Lock"
-#		suspend="󰒲Sleep"
-#		logout="󰍃 Logout"
+        shutdown="󰐥Shutdown"
+        reboot="󰜉 Restart"
+        lock="󰍁 Lock"
+        suspend="󰒲Sleep"
+        logout="󰍃 Logout"
 	fi
 	ddir="$HOME/.config/rofi/config"
 fi
@@ -108,7 +93,7 @@ case $chosen in
     $logout)
 		ans=$(rdialog &)
 		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
-			bspc quit
+			hyprctl dispatch exit
 		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
 			exit
         else

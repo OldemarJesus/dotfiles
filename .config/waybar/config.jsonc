@@ -18,7 +18,8 @@
     "pulseaudio",
     "pulseaudio#microphone",
     "custom/updates",
-    "custom/notification"
+    "custom/notification",
+    "custom/powerbtn"
   ],
   "hyprland/window": {
     "format": "{}"
@@ -135,5 +136,9 @@
     "format": " {}%",
     "exec": "$HOME/.config/nvidia-scripts/get-gpu-usage.sh",
     "interval": 2
+  },
+  "custom/powerbtn": {
+    "format": " ",
+    "on-click": "$HOME/.config/rofi/bin/powermenu"
   }
 }
