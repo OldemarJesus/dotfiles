@@ -6,16 +6,8 @@ This directory contains the dotfiles for my system
 
 Ensure you have the following installed on your system
 
-### Git
-
 ```
-pacman -S git
-```
-
-### Stow
-
-```
-pacman -S stow
+yay -S git stow waybar rofi hyprpaper copyq swaync kitty nemo wlr-randr xdg-desktop-portal-hyprland-git hyprpolkitagent
 ```
 
 ## Installation
