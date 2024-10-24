@@ -79,7 +79,6 @@ tooltip {
 #custom-powerbtn,
 #disk,
 #backlight,
-
 #backlight {
     background: @crust;
     opacity: 1.0;
