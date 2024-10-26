@@ -12,7 +12,7 @@ Please follow [ArchLinuxInstallation.md](./ARCH-INSTALLATION.md)
 Ensure you have the following installed on your system
 
 ```
-$ yay -S git stow waybar rofi hyprpaper copyq swaync kitty nemo wlr-randr xdg-desktop-portal-hyprland-git hyprpolkitagent
+$ yay -S git stow waybar rofi hyprpaper copyq swaync kitty nemo wlr-randr xdg-desktop-portal-hyprland-git hyprpolkitagent pipewire pipewire-pulse lib32-pipewire pipewire-alsa alsa-utils wireplumber qt5-wayland qt6-wayland ttf-font-awesome waybar-module-pacman-updates-git btop mpd
 ```
 
 ## Installation
