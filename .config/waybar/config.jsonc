@@ -42,6 +42,7 @@
     "calendar": {
       "mode": "year",
       "mode-mon-col": 3,
+      "weeks-pos": "left",
       "format": {
         "months": "<span color='#e6e1cf'><b>{}</b></span>",
         "days": "<span color='#cad3f5'><b>{}</b></span>",
