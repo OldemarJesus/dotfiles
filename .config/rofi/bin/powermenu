@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# close existing rofi instance
+kill $(pidof rofi)
+
 rofi_command="rofi -theme $HOME/.config/rofi/config/powermenu.rasi"
 
 uptime=$(uptime -p | sed -e 's/up //g')

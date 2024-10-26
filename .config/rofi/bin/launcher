@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# kill any existent rofi instance
+kill $(pidof rofi)
+
 rofi \
 	-show drun \
 	-scroll-method 0 \
