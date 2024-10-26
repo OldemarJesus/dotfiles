@@ -2,12 +2,17 @@
 
 This directory contains the dotfiles for my system
 
+
+## To Install Arch Linux With Hyprland
+
+Please follow [ArchLinuxInstallation.md](./ARCH-INSTALLATION.md)
+
 ## Requirements
 
 Ensure you have the following installed on your system
 
 ```
-yay -S git stow waybar rofi hyprpaper copyq swaync kitty nemo wlr-randr xdg-desktop-portal-hyprland-git hyprpolkitagent
+$ yay -S git stow waybar rofi hyprpaper copyq swaync kitty nemo wlr-randr xdg-desktop-portal-hyprland-git hyprpolkitagent
 ```
 
 ## Installation
@@ -23,4 +28,27 @@ then use GNU stow to create symlinks
 
 ```
 $ stow .
+```
+
+## Common Programs
+
+Visual Studio Code
+```
+$ yay -S visual-studio-code-bin
+```
+
+JetBrains Rider
+```
+$ yay -S rider
+```
+
+
+ZenBrowser
+```
+$ yay -S zen-browser-avx2-bin
+```
+
+WebCord
+```
+$ yay -S webcord
 ```
