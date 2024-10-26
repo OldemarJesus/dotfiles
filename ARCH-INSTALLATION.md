@@ -65,6 +65,11 @@ $ cryptsetup luksFormat -v -s 512 -h sha512 /dev/nvme0n1p3
 
 Enter in your password and **Keep it safe**. There is no "forgot password" here.
 
+Mount the driver:
+
+```
+$ cryptsetup open /dev/nvme1n1p3 luks_lvm
+```
 
 ## Volume setup
 
@@ -139,40 +144,83 @@ Create subvolumes
 
 ```
 $ btrfs subvolume create /mnt/@
-$ btrfs subvolume create /mnt/@home
-$ btrfs subvolume create /mnt/@var
-$ btrfs subvolume create /mnt/@snapshots
+$ btrfs subvolume create /mnt/@/home
+$ btrfs subvolume create /mnt/@/root
+$ btrfs subvolume create /mnt/@/opt
+$ btrfs subvolume create /mnt/@/srv
+$ btrfs subvolume create /mnt/@/tmp
+$ btrfs subvolume create /mnt/@/usr
+$ btrfs subvolume create /mnt/@/usr/local
+$ btrfs subvolume create /mnt/@/var
+$ btrfs subvolume create /mnt/@/var/log
+$ btrfs subvolume create /mnt/@/var/tmp
+$ btrfs subvolume create /mnt/@/var/cache
+$ btrfs subvolume create /mnt/@/var/spool
+```
+
+Create snapshots subvolumes
+
+```
+$ btrfs subvolume create /mnt/@/.snapshots
+$ mkdir /mnt/@/.snapshots/1
+$ btrfs subvolume create /mnt/@/.snapshots/1/snapshot
+```
+
+Crete first snapshot metadata
+
+```
+$ date +"%Y-%m-%d %H:%M:%S"
+$ nano /mnt/@/.snapshots/1/info.xml
+```
+
+Example content of <code>info.xml</code> file
+```
+<?xml version="1.0"?>
+<snapshot>
+	<type>single</type>
+	<num>1</num>
+	<date>2024-10-26 09:46:00</date>
+	<description>First Root Filesystem Created at Installation</description>
+</snapshot>
+```
+
+Setting default root subvolumes
+```
+$ btrfs subvolume set-default $(btrfs subvolume list /mnt | grep "@/.snapshots/1/snapshot" | grep -oP '(?<=ID )[0-9]+') /mnt
+```
+
+Exepected result
+```
+$ btrfs subvolume get-default /mnt
+ID 258 gen 12 top level 257 path @/.snapshots/1/snapshot
+```
+
+Enable BTRFS Quota
+```
+$ btrfs quota enable /mnt
+$ btrfs qgroup create 1/0 /mnt
+```
+
+Disable compression for var subvolumes
+```
+$ chattr +C /mnt/@/var/cache
+$ chattr +C /mnt/@/var/log
+$ chattr +C /mnt/@/var/spool
+$ chattr +C /mnt/@/var/tmp
 ```
 
 Remount root to the correct subvolume
 
 ```
 $ umount /mnt
-$ mount -o noatime,compress=lzo,space_cache,subvol=@ /dev/mapper/arch-root /mnt
+$ mount -o compress=zstd /dev/mapper/arch-root /mnt
 ```
 
-Create home, boot, var and snapshots
-
+Expected result
 ```
-$ mkdir -p /mnt/{home,boot,var,snapshots}
-```
+$ mount | grep /mnt
 
-Mount the home subvolume
-
-```
-$ mount -o noatime,compress=lzo,space_cache,subvol=@home /dev/mapper/arch-root /mnt/home
-```
-
-Mount the var subvolume
-
-```
-$ mount -o noatime,compress=lzo,space_cache,subvol=@var /dev/mapper/arch-root /mnt/var
-```
-
-Mount the snapshots subvolume
-
-```
-$ mount -o noatime,compress=lzo,space_cache,subvol=@snapshots /dev/mapper/arch-root /mnt/.snapshots
+/dev/nvme0n1p7 on /mnt type btrfs (rw,relatime,compress=zstd:3,ssd,space_cache,subvolid=258,subvol=/@/.snapshots/1/snapshot)
 ```
 
 Mount the boot partiton
@@ -193,12 +241,41 @@ Mount the EFI directory
 $ mount /dev/nvme0n1p1 /mnt/boot/efi
 ```
 
+Mounting btrfs sobvolumes
+```
+$ mkdir /mnt/home
+$ mkdir /mnt/root
+$ mkdir /mnt/opt
+$ mkdir /mnt/srv
+$ mkdir /mnt/tmp
+$ mkdir -p /mnt/usr/local
+$ mkdir -p /mnt/var/log
+$ mkdir /mnt/var/tmp
+$ mkdir /mnt/var/cache
+$ mkdir /mnt/var/spool
+$ mkdir /mnt/.snapshots
+
+$ mount /dev/mapper/arch-root -o subvol=@/home,compress=zstd /mnt/home
+$ mount /dev/mapper/arch-root -o subvol=@/root,compress=zstd /mnt/root
+$ mount /dev/mapper/arch-root -o subvol=@/opt,compress=zstd /mnt/opt
+$ mount /dev/mapper/arch-root -o subvol=@/srv,compress=zstd /mnt/srv
+$ mount /dev/mapper/arch-root -o subvol=@/tmp,compress=zstd /mnt/tmp
+$ mount /dev/mapper/arch-root -o subvol=@/usr,compress=zstd /mnt/usr
+$ mount /dev/mapper/arch-root -o subvol=@/usr/local,compress=zstd /mnt/usr/local
+$ mount /dev/mapper/arch-root -o subvol=@/var,compress=zstd,nodatacow /mnt/var
+$ mount /dev/mapper/arch-root -o subvol=@/var/log,compress=zstd,nodatacow /mnt/var/log
+$ mount /dev/mapper/arch-root -o subvol=@/var/tmp,compress=zstd,nodatacow /mnt/var/tmp
+$ mount /dev/mapper/arch-root -o subvol=@/var/cache,compress=zstd,nodatacow /mnt/var/cache
+$ mount /dev/mapper/arch-root -o subvol=@/var/spool,compress=zstd,nodatacow /mnt/var/spool
+$ mount /dev/mapper/arch-root -o subvol=@/.snapshots,compress=zstd /mnt/.snapshots
+```
+
 ## Install arch
 
 With base-devel
 
 ```
-$ pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs nano neovim lvm2
+$ pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs neovim lvm2 intel-ucode btrfs-progs ntfs-3g sudo nano
 ```
 
 Load the file table
@@ -444,15 +521,6 @@ $ EDITOR=nvim visudo
 ```
 $ pacman -S networkmanager
 $ systemctl enable NetworkManager
-```
-
-### Microcode
-
-For intel
-
-```
-$ pacman -S intel-ucode
-```
 
 ```
 $ grub-mkconfig -o /boot/grub/grub.cfg
