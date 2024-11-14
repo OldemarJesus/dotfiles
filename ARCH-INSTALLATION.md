@@ -391,7 +391,7 @@ $ grub-mkconfig -o /boot/efi/EFI/arch/grub.cfg
 Install NVIDIA driver
 
 ```
-$ pacman -S nvidia-dkms nvidia-utils egl-wayland
+$ pacman -S nvidia-dkms nvidia-utils egl-wayland libva-nvidia-driver
 ```
 
 Update mkinitcpio on <code>/etc/mkinitcpio.conf</code>
@@ -554,7 +554,7 @@ $ make all && sudo make install
 
 Install Display Manager
 ```
-$ yay -S sddm-git
+$ yay -S sddm-git sddm-astronaut-theme
 $ sudo systemctl enable sddm
 ```
 
