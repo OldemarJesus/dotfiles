@@ -1,14 +1,5 @@
-copyq
-flatpak
-gvfs-metadata
-IsolatedStorage
-JetBrains
-nemo
-NuGet
-nvim
-recently-used.xbel
-RefSrcSymbols
-sddm
-Symbols
-SymbolSourceSymbols
-Trash
+# Ignore everything
+*
+
+# Allow this
+!rofi
