@@ -11,7 +11,7 @@ return {
 		config = function()
 			-- setting mason lsp config
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "rust_analyzer", "tsserver", "csharp_ls", "clangd" },
+				ensure_installed = { "lua_ls", "rust_analyzer", "tsserver", "csharp_ls", "clangd", "biome" },
 			})
 		end,
 	},
@@ -32,6 +32,9 @@ return {
 				capabilities = capabilities,
 			})
             require("lspconfig").clangd.setup({
+                capabilities = capabilities,
+            })
+            require("lspconfig").biome.setup({
                 capabilities = capabilities,
             })
 
