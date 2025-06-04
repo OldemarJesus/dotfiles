@@ -52,7 +52,7 @@
     }
   },
   "pulseaudio": {
-    "format": "{icon} {volume}%",
+    "format": "{icon}   {volume}%",
     "tooltip": false,
     "format-muted": " Muted",
     "max-volume": 100,
